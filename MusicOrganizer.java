@@ -82,4 +82,59 @@ public class MusicOrganizer
     {
         player.stop();
     }
+    
+    /*
+     * Lista de todos los archivos
+     */
+    public void listAllFiles()
+    {
+        int posicion = 1;
+        for(String filename : files)
+        {
+            System.out.println(posicion + ". " + filename);
+            posicion = posicion + 1;
+        }
+    }
+    
+    /*
+     * Lista de archivos que estan dentro de una cadena
+     */
+    public void listMachine(String searchString)
+    {
+        int contador = 0;
+        for(String filename : files)
+        {
+            if(filename.contains(searchString))
+            {
+                System.out.println(filename);
+                contador = contador + 1;
+            }
+        }
+        
+        if(contador == 0)
+        {
+            System.out.println("ERROR: no hay ningun archivo que contenga ese nombre");
+        }
+    }
+    
+    /*
+     * Reproduce los primeros segundos de un archivo
+     */
+    public void playArtist(String artist)
+    {
+        int contador = 0;
+        for(String filename : files)
+        {
+            if(filename.contains(artist))
+            {
+                player.playSample(filename);
+                contador = contador + 1;
+            }
+        }
+        
+        if(contador == 0)
+        {
+            System.out.println("ERROR: no hay ningun archivo que contenga ese nombre");
+        }
+    }
 }
