@@ -101,17 +101,17 @@ public class MusicOrganizer
      */
     public void listMachine(String searchString)
     {
-        int contador = 0;
+        boolean contiene = false;
         for(String filename : files)
         {
             if(filename.contains(searchString))
             {
                 System.out.println(filename);
-                contador = contador + 1;
+                contiene = true;
             }
         }
         
-        if(contador == 0)
+        if(contiene == false)
         {
             System.out.println("ERROR: no hay ningun archivo que contenga ese nombre");
         }
@@ -135,6 +135,38 @@ public class MusicOrganizer
         if(contador == 0)
         {
             System.out.println("ERROR: no hay ningun archivo que contenga ese nombre");
+        }
+    }
+    
+    /*
+     * Devuelve el primer archivo que contiene una cadena o el valor -1 y si no hay
+     * ningun archivo que cumpla la condicion usar un bucle while
+     */
+    public int findFirst(String busca)
+    {
+        int index = 0;
+        boolean found = true;
+        
+        while (!found && index < files.size())
+        {
+            String filename = files.get(index);
+            if(filename.contains(busca))
+            {
+                found = false;
+            }
+            else
+            {
+                index = index + 1;
+            }
+        }
+        
+        if(found)
+        {
+            return - 1;
+        }
+        else
+        {
+            return index;
         }
     }
 }
